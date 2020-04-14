@@ -40,8 +40,8 @@ The main tasks for this exercise are as follows:
 
    - Subscription: the name of the target Azure subscription
 
-   - Cloud Shell region: the name of the Azure region that is available in your subscription and which is closest to the lab location
-
+   - Cloud Shell region: **West US**
+   
    - Resource group: Use  resource group **StagiaireXXX-RG1**
 
    - Storage account: a name of a new storage account (between 3 and 24 characters consisting of lower case letters and digits)
@@ -51,7 +51,7 @@ The main tasks for this exercise are as follows:
 1. From the Cloud Shell pane, run the following command to identify a unique DNS domain name (substitute the placeholder `<custom-label>` with any alphanumeric string starting with a letter and no longer than 9 characters, which is likely to be unique and the placeholder `<location>` with the name of the Azure region into which you intend to deploy resources in this lab):
 
    ```pwsh
-   Test-AzDnsAvailability -DomainNameLabel <custom-label> -Location '<location>'
+   Test-AzDnsAvailability -DomainNameLabel <custom-label> -Location WestUs
    ```
 
 1. Verify that the command returned **True**. If not, rerun the same command with a different value of the `<custom-label>` until the command returns **True**.
