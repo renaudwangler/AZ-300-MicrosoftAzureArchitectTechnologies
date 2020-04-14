@@ -7,7 +7,7 @@
     "tenant_id": "$TENANT_ID",
     "subscription_id": "$SUBSCRIPTION_ID",
 
-    "managed_image_resource_group_name": "az3000301-LabRG",
+    "managed_image_resource_group_name": "$RESOURCE_GROUP_NAME",
     "managed_image_name": "az3000301-image",
 
     "os_type": "Linux",
