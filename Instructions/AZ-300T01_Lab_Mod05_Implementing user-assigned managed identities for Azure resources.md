@@ -46,7 +46,7 @@ The main tasks for this exercise are as follows:
 
    - Cloud Shell region: the name of the Azure region that is available in your subscription and which is closest to the lab location
 
-   - Resource group: **az3000500-LabRG**
+   - Resource group: **StagiaireXXX-RG1**
 
    - Storage account: a name of a new storage account
 
@@ -65,7 +65,7 @@ The main tasks for this exercise are as follows:
 1. From the Cloud Shell pane, deploy an Azure VM hosting Windows Server 2016 Datacenter into the first virtual network by running:
 
    ```
-   az group deployment create --resource-group az3000501-LabRG --template-file azuredeploy05.json --parameters @azuredeploy05.parameters.json
+   az group deployment create --resource-group StagiaireXXX-RG1 --template-file azuredeploy05.json --parameters @azuredeploy05.parameters.json
    ```
 
    > **Note**: Wait for the deployment to complete. This might take about 5 minutes.
@@ -75,7 +75,7 @@ The main tasks for this exercise are as follows:
 1. From the Cloud Shell pane, run the following to create a user-assigned managed identity:
 
    ```
-   az identity create --resource-group az3000501-LabRG --name az3000501-mi
+   az identity create --resource-group StagiaireXXX-RG1 --name az3000501-mi
    ```
 
 1. From the Cloud Shell pane, run the following to assign the user-assigned managed identity to the Azure VM:
