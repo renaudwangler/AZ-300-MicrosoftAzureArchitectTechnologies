@@ -159,7 +159,7 @@ The main tasks for this exercise are as follows:
 1. From the Cloud Shell pane, run the following to identify the IP address associated with the newly deployed Azure VM.
 
    ```sh
-   az network public-ip show --resource-group az3000301-LabRG --name az3000301-vmPublicIP --query ipAddress
+   az network public-ip show --resource-group $RESOURCE_GROUP_NAME --name az3000301-vmPublicIP --query ipAddress
    ```
 
 1. Start Microsoft Edge and navigate to the IP address you identified in the previous step.
