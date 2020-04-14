@@ -52,12 +52,6 @@ The main tasks for this exercise are as follows:
 
    - File share: a name of a new file share
 
-1. From the Cloud Shell pane, create a resource group by running (replace the `<Azure region>` placeholder with the name of the Azure region that is available in your subscription and which is closest to the lab location)
-
-   ```
-   az group create --resource-group az3000501-LabRG --location <Azure region>
-   ```
-
 1. From the Cloud Shell pane, upload the Azure Resource Manager template **\\allfiles\\AZ-300T01\\Module_05\\azuredeploy05.json** into the home directory.
 
 1. From the Cloud Shell pane, upload the parameter file **\\allfiles\\AZ-300T01\\Module_05\\azuredeploy05.parameters.json** into the home directory.
@@ -81,20 +75,14 @@ The main tasks for this exercise are as follows:
 1. From the Cloud Shell pane, run the following to assign the user-assigned managed identity to the Azure VM:
 
    ```
-   az vm identity assign --resource-group az3000501-LabRG --name az3000501-vm --identities az3000501-mi
+   az vm identity assign --resource-group StagiaireXXX-RG1 --name az3000501-vm --identities az3000501-mi
    ```
 
 #### Task 3: Configure RBAC referencing the user-assigned managed identity.
 
-1. From the Cloud Shell pane, run the following to create a resource group (replace the `<Azure region>` placeholder with the name of the Azure region into which you deployed the Azure VM in this exercise):
+1. In the Azure portal, navigate to the **StagiaireXXX-RG2 - Access control (IAM)** blade.
 
-   ```
-   az group create --resource-group az3000502-LabRG --location <Azure region>
-   ```
-
-1. In the Azure portal, navigate to the **az3000502-LabRG - Access control (IAM)** blade.
-
-1. From the **az3000502-LabRG - Access control (IAM)** blade, assign the Owner role to the newly created user-assigned managed identity.
+1. From the **StagiaireXXX-RG2    - Access control (IAM)** blade, assign the Owner role to the newly created user-assigned managed identity.
 
 > **Result**: After you completed this exercise, you have created and configured a user-assigned managed identity.
 
@@ -154,14 +142,14 @@ The main tasks for this exercise are as follows:
    (Get-AzVM -ResourceGroupName az3000501-LabRG -Name az3000501-vm).Identity
    ```
 
-1. Note the error message. As the message states, the current security context does not grant sufficent authorization to the target resource. To resolve this issue, switch to the Azure portal, navigate to the **az3000501-LabRG - Access control (IAM)** blade.
+1. Note the error message. As the message states, the current security context does not grant sufficent authorization to the target resource. To resolve this issue, switch to the Azure portal, navigate to the **StagiaireXXX-RG1- Access control (IAM)** blade.
 
-1. From the **az3000501-LabRG - Access control (IAM)** blade, assign the Contributor role to the user-assigned managed identity **az3000501-mi**.
+1. From the **StagiaireXXX-RG1 - Access control (IAM)** blade, assign the Contributor role to the user-assigned managed identity **az3000501-mi**.
 
 1. Switch back to the Remote Desktop session, and, from the PowerShell prompt, run the following to attempt to retrieve the currently used managed identity:
 
    ```pwsh
-   (Get-AzVM -ResourceGroupName az3000501-LabRG -Name az3000501-vm).Identity
+   (Get-AzVM -ResourceGroupName StagiaireXXX-RG1  -Name az3000501-vm).Identity
    ```
 
    > **Note**: If you receive an error message indicating insufficient privileges, from the PowerShell prompt, run
