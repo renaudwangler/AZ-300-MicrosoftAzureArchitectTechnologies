@@ -42,7 +42,7 @@ The main tasks for this exercise are as follows:
 
    - Cloud Shell region: the name of the Azure region that is available in your subscription and which is closest to the lab location
 
-   - Resource group: the name of a new resource group **az3000100-LabRG**
+   - Resource group: Use  resource group **StagiaireXXX-RG**
 
    - Storage account: a name of a new storage account (between 3 and 24 characters consisting of lower case letters and digits)
 
