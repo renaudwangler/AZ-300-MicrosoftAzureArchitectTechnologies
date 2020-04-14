@@ -66,7 +66,7 @@ The main tasks for this exercise are as follows:
 
    - Subscription: the name of the target Azure subscription
 
-   - Resource group: the name of a new resource group **az3000101-LabRG**
+   - Resource group: use **StagiaireXXX-RG1**
 
    - Location: the name of the Azure region that you referenced when running `Test-AzDnsAvailability` earlier in this task
 
