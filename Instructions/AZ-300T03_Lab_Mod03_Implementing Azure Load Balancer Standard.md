@@ -50,17 +50,11 @@ The main tasks for this exercise are as follows:
 
     - Cloud Shell region: the name of the Azure region that is available in your subscription and which is closest to the lab location
 
-    - Resource group: the name of a new resource group **az3000800-LabRG**
+    - Resource group: the name of a new resource group **StagiaireXXX-RG1**
 
     - Storage account: a name of a new storage account
 
     - File share: a name of a new file share
-
-1. From the Cloud Shell pane, create a resource groups by running (replace the `<Azure region>` placeholder with the name of the Azure region that is available in your subscription and which is closest to the lab location)
-
-   ```
-   az group create --name az3000801-LabRG --location <Azure region>
-   ```
 
 1. From the Cloud Shell pane, upload the Azure Resource Manager template **\\allfiles\\AZ-300T03\\Module_03\\azuredeploy0801.json** into the home directory.
 
@@ -69,7 +63,7 @@ The main tasks for this exercise are as follows:
 1. From the Cloud Shell pane, deploy a pair of Azure VMs hosting Windows Server 2016 Datacenter by running:
 
    ```
-   az group deployment create --resource-group az3000801-LabRG --template-file azuredeploy0801.json --parameters @azuredeploy0801.parameters.json
+   az group deployment create --resource-group StagiaireXXX-RG1 --template-file azuredeploy0801.json --parameters @azuredeploy0801.parameters.json
    ```
 
     > **Note**: Wait for the deployment before you proceed to the next task. This might take about 10 minutes.
@@ -83,7 +77,7 @@ The main tasks for this exercise are as follows:
 
     - Subsciption: the name of the target Azure subscription
 
-    - Resource group: **az3000801-LabRG**
+    - Resource group: **StagiaireXXX-RG1**
     
     - Name: **az3000801-lb**
 
@@ -94,9 +88,6 @@ The main tasks for this exercise are as follows:
     - SKU: **Standard**
 
     - Public IP address: **Create new** named **az3000801-lb-pip01**
-
-    - Availability zone: **Zone-redundant**
-
 
 #### Task 3: Create a load balancing rule of Azure Load Balancer Standard
 
@@ -305,7 +296,7 @@ The main tasks for this exercise are as follows:
 1. From the Cloud Shell pane, deploy a pair of Azure VMs hosting Windows Server 2016 Datacenter by running:
 
    ```
-   az group deployment create --resource-group az3000801-LabRG --template-file azuredeploy0802.json --parameters @azuredeploy0802.parameters.json
+   az group deployment create --resource-group StagiaireXXX-RG1 --template-file azuredeploy0802.json --parameters @azuredeploy0802.parameters.json
    ```
 
     > **Note**: Wait for the deployment before you proceed to the next task. This might take about 5 minutes.
@@ -320,20 +311,21 @@ The main tasks for this exercise are as follows:
 1. In the Azure portal, from the Cloud Shell pane, run the following to create an outbound public IP address of the load balancer:
 
    ```
-   az network public-ip create --resource-group az3000801-LabRG --name az3000802-lb-pip01 --sku standard
+   az network public-ip create --resource-group StagiaireXXX-RG1 --name az3000802-lb-pip01 --sku standard
    ```
 
 1. In the Azure portal, from the Cloud Shell pane, run the following to create an Azure Load Balancer Standard:
 
    ```sh
-   LOCATION=$(az group show --name az3000801-LabRG --query location --out tsv)
-   az network lb create --resource-group az3000801-LabRG --name az3000802-lb --sku standard --backend-pool-name az3000802-bepool --frontend-ip-name loadBalancedFrontEndOutbound --location $LOCATION --public-ip-address az3000802-lb-pip01
+   LOCATION=$(az group show --name StagiaireXXX-RG1 --query location --out tsv)
+   
+   az network lb create --resource-group StagiaireXXX-RG1 --name az3000802-lb --sku standard --backend-pool-name az3000802-bepool --frontend-ip-name loadBalancedFrontEndOutbound --location $LOCATION --public-ip-address az3000802-lb-pip01
    ```
 
 1. From the Cloud Shell pane, run the following to create an outbound rule:
 
    ```
-   az network lb outbound-rule create --resource-group az3000801-LabRG --lb-name az3000802-lb --name outboundRuleaz30000802 --frontend-ip-configs loadBalancedFrontEndOutbound --protocol All --idle-timeout 15 --outbound-ports 10000 --address-pool az3000802-bepool
+   az network lb outbound-rule create --resource-group StagiaireXXX-RG1 --lb-name az3000802-lb --name outboundRuleaz30000802 --frontend-ip-configs loadBalancedFrontEndOutbound --protocol All --idle-timeout 15 --outbound-ports 10000 --address-pool az3000802-bepool
    ```
 
     > **Note**: Wait for the operation to complete. This should not take more than 1 minute.
@@ -384,31 +376,3 @@ The main tasks for this exercise are as follows:
 
 > **Result**: After you completed this exercise, you have configured and tested Azure Load Balancer Standard outbound rules 
 
-
-## Exercise 3: Remove lab resources
-
-#### Task 1: Open Cloud Shell
-
-1. At the top of the portal, click the **Cloud Shell** icon to open the Cloud Shell pane.
-
-1. If needed, switch to the Bash shell session by using the drop down list in the upper left corner of the Cloud Shell pane.
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to list all resource groups you created in this lab:
-
-   ```
-   az group list --query "[?starts_with(name,'az30008')]".name --output tsv
-   ```
-
-1. Verify that the output contains only the resource groups you created in this lab. These groups will be deleted in the next task.
-
-#### Task 2: Delete resource groups
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to delete the resource groups you created in this lab
-
-   ```sh
-   az group list --query "[?starts_with(name,'az30008')]".name --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
-   ```
-
-1. Close the **Cloud Shell** prompt at the bottom of the portal.
-
-> **Result**: In this exercise, you removed the resources used in this lab.
