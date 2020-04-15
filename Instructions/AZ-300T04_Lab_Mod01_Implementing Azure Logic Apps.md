@@ -80,7 +80,7 @@ The main tasks for this exercise are as follows:
 1. Wait until the app is provisioned. This will take about a minute. 
 
 
-#### Task 3: Retrieave your Tenant ID
+#### Task 3: Retrieve your Tenant ID
 
 1. From the Azure portal, open a PowerShell session in the Cloud Shell and run the following command:
 
