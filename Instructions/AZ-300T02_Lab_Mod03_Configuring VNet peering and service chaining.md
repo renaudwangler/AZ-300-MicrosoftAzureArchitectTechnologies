@@ -50,18 +50,11 @@ The main tasks for this exercise are as follows:
 
     - Cloud Shell region: the name of the Azure region that is available in your subscription and which is closest to the lab location
 
-    - Resource group: the name of a new resource group **az3000400-LabRG**
+    - Resource group: the name of a new resource group **StagiaireXXX-RG1**
 
     - Storage account: a name of a new storage account
 
     - File share: a name of a new file share
-
-1. From the Cloud Shell pane, create two resource groups by running (replace the `<Azure region>` placeholder with the name of the Azure region that is available in your subscription and which is closest to the lab location)
-
-   ```
-   az group create --resource-group az3000401-LabRG --location <Azure region>
-   az group create --resource-group az3000402-LabRG --location <Azure region>
-   ```
 
 1. From the Cloud Shell pane, upload the first Azure Resource Manager template **\\allfiles\\AZ-300T02\\Module_03\\azuredeploy0401.json** into the home directory.
 
@@ -70,7 +63,7 @@ The main tasks for this exercise are as follows:
 1. From the Cloud Shell pane, deploy the two Azure VMs hosting Windows Server 2016 Datacenter into the first virtual network by running:
 
    ```
-   az group deployment create --resource-group az3000401-LabRG --template-file azuredeploy0401.json --parameters @azuredeploy04.parameters.json --no-wait
+   az group deployment create --resource-group StagiaireXXX-RG1 --template-file azuredeploy0401.json --parameters @azuredeploy04.parameters.json --no-wait
    ```
 
     > **Note**: Do not wait for the deployment to complete but proceed to the next task.
@@ -83,7 +76,7 @@ The main tasks for this exercise are as follows:
 1. From the Cloud Shell pane, deploy an Azure VM hosting Windows Server 2016 Datacenter into the second virtual network by running:
 
    ```
-   az group deployment create --resource-group az3000402-LabRG --template-file azuredeploy0402.json --parameters @azuredeploy04.parameters.json --no-wait
+   az group deployment create --resource-group StagiaireXXX-RG2 --template-file azuredeploy0402.json --parameters @azuredeploy04.parameters.json --no-wait
    ```
 
     > **Note**: The second template uses the same parameter file. 
@@ -151,7 +144,7 @@ The main tasks for this exercise are as follows:
 
     - Subscription: the name of the Azure subscription you use for this lab
 
-    - Resource group: **az3000402-LabRG**
+    - Resource group: **StagiaireXXX-RG2**
 
     - Location: the same Azure region in which you created the virtual networks
   
