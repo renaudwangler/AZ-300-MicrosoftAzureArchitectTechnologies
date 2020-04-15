@@ -42,17 +42,11 @@ The main tasks for this exercise are as follows:
 
    - Cloud Shell region: the name of the Azure region that is available in your subscription and which is closest to the lab location
 
-   - Resource group: the name of a new resource group **az3000600-LabRG**
+   - Resource group: use **StagiaireXXX-RG1**
 
    - Storage account: a name of a new storage account
 
    - File share: a name of a new file share
-
-1. From the Cloud Shell pane, create a resource group by running (replace the `<Azure region>` placeholder with the name of the Azure region that is available in your subscription and which is closest to the lab location)
-
-   ```pwsh
-   New-AzResourceGroup -Name az3000601-LabRG -Location <Azure region>
-   ```
 
 1. From the Cloud Shell pane, upload the Azure Resource Manager template **\\allfiles\\AZ-300T02\\Module_01\\azuredeploy06.json** into the home directory.
 
@@ -66,7 +60,7 @@ The main tasks for this exercise are as follows:
 1. From the Cloud Shell pane, deploy an Azure VM hosting Windows Server 2016 Datacenter by running:
 
    ```pwsh
-   New-AzResourceGroupDeployment -ResourceGroupName az3000601-LabRG -TemplateFile azuredeploy06.json -TemplateParameterFile azuredeploy06.parameters.json
+   New-AzResourceGroupDeployment -ResourceGroupName StagiaireXXX-RG1 -TemplateFile azuredeploy06.json -TemplateParameterFile azuredeploy06.parameters.json
    ```
 
    > **Note**: Do not wait for the deployment to complete but instead proceed to the next task.
@@ -76,15 +70,17 @@ The main tasks for this exercise are as follows:
 
 1. From Azure Portal, create an instance of **Recovery Services vault** with the following settings:
 
-   - Name: **vaultaz3000602**
+   - Name: **vaultStagiaireXXX**
 
    - Subscription: the name of the target Azure subscription
 
-   - Resource group: the name of a new resource group **az3000602-LabRG**
+   - Resource group: **StagiaireXXX-RG2**
 
-   - Location: the name of an Azure region that is available in your subscription and which is **different** from the region you deployed an Azure VM in the previous task
+1. Once the vault is provisioned (should take about one minute), navigate to the vault's **Overview** blade and select **Properties** in the left-hand pane.
 
-1. Wait until the vault is provisioned. This will take about a minute.
+1. On the **vaultStagiaireXXX | Properties** blade, click the **Update** link under **Security Settings**
+
+1. In **Security Settings**, change the value of the **Soft Delete (For Azure Virtual Machines)** parameter to **Disabled**, then click **Save**.
 
 > **Result**: After you completed this exercise, you have created an Azure VM to be migrated and an Azure Site Recovery vault that will host the migrated disk files of the Azure VM.
 
