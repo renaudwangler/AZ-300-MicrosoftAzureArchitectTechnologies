@@ -100,44 +100,39 @@ The main tasks for this exercise are as follows:
 
 1. On the Recovery Services vault blade, click the **+ Replicate** button.
 
-1. Enable replication by specifying the following settings:
-
+1. On the **Source** blade, select the following values, then click **OK**:
+   
    - Source: **Azure**
-
-   - Source location: the same Azure region into which you deployed the Azure VM in the previous exercise of this lab
-
+   
+   - Source location: the same Azure region into which you deployed the VM in the previous exercise
+   
    - Azure virtual machine deployment model: **Resource Manager**
+   
+   - Source subscription: Leave the default value
+   
+   - Source resource group: **StagiaireXXX-RG1**
 
-   - Source resource group: **az3000601-LabRG**
+1. On the **Select virtual machines** blade, check the box next to **az3000601-vm** and click **OK**
 
-   - Virtual machines: **az3000601-vm**
+1. On the **Configure settings** blade:
 
-   - Target location: the name of an Azure region that is available in your subscription and which is different from the region you deployed an Azure VM in the previous task
+   - Change the **Target location** to the location associated with resource group **StagiaireXXX-RG2** (i.e. East US)
 
-   - Target resource group: **(new) az3000601-LabRG-asr**
-
-   - Target virtual network: **(new) az3000601-vnet-asr**
-
-   - Cache storage account: accept the default setting
-
-   - Replica managed disks: **(new) 1 premium disk(s), 0 standard disk(s)**
-
-   - Target availability sets: **Not Applicable**
-
-   - Replication policy: **Create new**
-
-   - Name: **12-hour-retention-policy**
-
-   - Recovery point retention: **12 Hours**
-
-   - App consistent snapshot frequency: **6 Hours**
-
-   - Multi-VM consistency: **No**
-
-1. Initiate creation of target resources.
-
-1. Enable the replication.
-
+   - Click **Customize** next to **Resource group, Network, Storage and Availability**
+   
+   - On the **Customize target settings** blade, change the **Target resource group** to **StagiaireXXX-R2**, leave the other values as they are and click **OK**
+   
+   - Back on the **Confgure settings** blade, click **Customize** next to **Replication Policy**
+   
+   - On the **Configure replication settings** blade, set the follwing values for a new replication policy:
+      - Name: **12-hour-retention policy**
+      - Recovery point retention: **24 hours**
+      - App consistent snapshot frequency: **6 hours**
+      - Multi-VM consistency: **No**
+   
+   
+   
+   
    > **Note**: Wait for the operation of enabling the replication to complete. Then proceed to the next task.
 
 #### Task 2: Review Azure VM replication settings
