@@ -125,14 +125,14 @@ The main tasks for this exercise are as follows:
    - Back on the **Confgure settings** blade, click **Customize** next to **Replication Policy**
    
    - On the **Configure replication settings** blade, set the follwing values for a new replication policy:
+   
       - Name: **12-hour-retention policy**
       - Recovery point retention: **24 hours**
       - App consistent snapshot frequency: **6 hours**
       - Multi-VM consistency: **No**
    
-   
-   
-   
+   - Click **OK** to return to the **Configure settings** blade, then click **Create target resources**. Ignore the warning on not having permissions to create an Azure Run As Account
+      
    > **Note**: Wait for the operation of enabling the replication to complete. Then proceed to the next task.
 
 #### Task 2: Review Azure VM replication settings
