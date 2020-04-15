@@ -29,24 +29,20 @@ The main tasks for this exercise are as follows:
 
 1. Create an Azure storage account
 
-1. Create an Azure logic app 
+1. Create an Azure logic app
 
-1. Create an Azure AD service principal 
-
-1. Assign the Reader role to the Azure AD service principal 
-
-1. Register the Microsoft.EventGrid resource provider 
+1. Retrieve your Tenant ID
 
 
 #### Task 1: Create a storage account in Azure
 
-1. From the lab virtual machine, start Microsoft Edge and browse to the Azure portal at [**http://portal.azure.com**](http://portal.azure.com) and sign in by using the Microsoft account that has the Owner role in the target Azure subscription.
+1. From the lab virtual machine, start Microsoft Edge and browse to the Azure portal at [**http://portal.azure.com**](http://portal.azure.com) and sign in by using the account that you were given at the start of the course.
   
 1. From Azure Portal, create a new storage account with the following settings: 
 
     - Subscription: the name of the target Azure subscription
 
-    - Resource group: a new resource group named **az3000701-LabRG**
+    - Resource group: **StagiaireXXX-RG1**
 
     - Storage account name: any valid, unique name between 3 and 24 characters consisting of lowercase letters and digits
 
@@ -75,7 +71,7 @@ The main tasks for this exercise are as follows:
 
     - Subscription: the name of the target Azure subscription
 
-    - Resource group: the name of a new resource group **az3000702-LabRG**
+    - Resource group: **StagiaireXXX-RG2**
 
     - Location: the same Azure region into which you deployed the storage account in the previous task
 
@@ -84,70 +80,17 @@ The main tasks for this exercise are as follows:
 1. Wait until the app is provisioned. This will take about a minute. 
 
 
-#### Task 3: Create an Azure AD service principal 
+#### Task 3: Retrieave your Tenant ID
 
-1. In the Azure portal, in the Microsoft Edge window, start a **PowerShell** session within the **Cloud Shell**. 
+1. From the Azure portal, open a PowerShell session in the Cloud Shell and run the following command:
 
-1. If you are presented with the **You have no storage mounted** message, configure storage using the following settings:
+  ```
+  Get-AzSubscription
+  ```
+  
+1. In the output of that command note the value displayed under **TenantID**. You will need it in the next exercise
 
-    - Subsciption: the name of the target Azure subscription
-
-    - Cloud Shell region: the name of the Azure region that is available in your subscription and which is closest to the lab location
-
-    - Resource group: the name of a new resource group **az3000700-LabRG**
-
-    - Storage account: a name of a new storage account
-
-    - File share: a name of a new file share
-
-1. From the Cloud Shell pane, run the following to create a new Azure AD application that you will associate with the service principal you create in the subsequent steps of this task:
-
-   ```pwsh
-   $password = 'Pa55w.rd1234'
-   $securePassword = ConvertTo-SecureString -Force -AsPlainText -String $password
-   $aadApp30007 = New-AzADApplication -DisplayName 'aadApp30007' -HomePage 'http://aadApp30007' -IdentifierUris 'http://aadApp30007' -Password $securePassword
-   ```
-
-1. From the Cloud Shell pane, run the following to create a new Azure AD service principal associated with the application you created in the previous step:
-
-   ```pwsh
-   New-AzADServicePrincipal -ApplicationId $aadApp30007.ApplicationId.Guid
-   ```
-
-1. In the output of the **New-AzADServicePrincipal** command, note the value of the **ApplicationId** property. You will need this in the next exercise of this lab.
-
-1. From the Cloud Shell pane, run the following to identify the value of the **Id** property of the current Azure subscription and the value of the **TenantId** property of the Azure AD tenant associated with that subscription (you will also need them in the next exercise of this lab):
-
-   ```pwsh
-   Get-AzSubscription
-   ```
-
-1. Close the Cloud Shell pane.
-
-
-#### Task 4: Assign the Reader role to the Azure AD service principal 
-
-1. In the Azure portal, navigate to the blade displaying properties of your Azure subscription. 
-
-1. On the Azure subscription blade, click **Access control (IAM)**.
-
-1. Assign the **Reader** role within the scope of the Azure subscription to the **aadApp30007** service principal.
-
-
-#### Task 5: Register the Microsoft.EventGrid resource provider
-
-1. In the Azure portal, in the Microsoft Edge window, reopen the **PowerShell** session within the **Cloud Shell**. 
-
-1. From the Cloud Shell pane, run the following to register the Microsoft.EventGrid resource provider:
-
-   ```pwsh
-   Register-AzResourceProvider -ProviderNamespace Microsoft.EventGrid
-   ```
-
-1. Close the Cloud Shell pane.
-
-
-> **Result**: After you completed this exercise, you have created a storage account, a logic app that you will configure in the next exercise of this lab, and an Azure AD service principal that you will reference during that configuration.
+> **Result**: After you completed this exercise, you have created a storage account, a logic app that you will configure in the next exercise of this lab.
 
 
 ## Exercise 2: Configure Azure logic app to monitor changes to a resource group.
@@ -177,11 +120,13 @@ The main tasks for this exercise are as follows:
 
     - Connection Name: **egc30007**
 
-    - Client ID: the **ApplicationId** property you identified in the previous exercise
-
+    - Client ID: **b593223d-d071-49c1-84ab-f4e0bb0595bc**
+    
     - Client Secret: **Pa55w.rd1234**
 
     - Tenant: the **TenantId** property you identified in the previous exercise
+    
+    >**Note:** The values Connection Name, Client ID and Client Secret above refer to a Service Principal that was created for you in the subscription.
 
 1. In the **When a resource event occurs** tile, specify the following values:
 
@@ -194,7 +139,7 @@ The main tasks for this exercise are as follows:
     - Event Type Item - 1: **Microsoft.Resources.ResourceWriteSuccess**
 
     - Event Type Item - 2: **Microsoft.Resources.ResourceDeleteSuccess**
-
+        
 1. Click **Add new parameter** and select **Subscription Name**
 
 1. In the **Subscription Name** text box, type **event-subscription-az3000701** and click **Save**.
@@ -207,7 +152,7 @@ The main tasks for this exercise are as follows:
 
 1. In the list of results, click **Outlook.com**. 
 
-1. In the list of actions for **Outlook.com**, click **Send an email**.
+1. In the list of actions for **Outlook.com**, click **Send an email (V2)**.
 
 1. In the **Outlook.com** pane, click **Sign in**. 
 
@@ -233,9 +178,9 @@ The main tasks for this exercise are as follows:
 
 #### Task 4: Configure an event subscription
 
-1. In the Azure portal, navigate to the **az3000701-LabRG** resource group and, in the vertical menu, click **Events**.
+1. In the Azure portal, navigate to the **StagiaireXXX-RG1** resource group and, in the vertical menu, click **Events**.
 
-1. On the **az3000701-LabRG - Events** blade, select **Get Started** and click **Web Hook**.
+1. On the **StagiaireXXX-RG1 - Events** blade, select **Get Started** and click **Web Hook**.
 
 1. On the **Create Event Subscription** blade, in the **Filter to Event Types** drop down list, ensure that only the checkboxes next to the **Resource Write Success** and **Resource Delete Success** are selected.
 
@@ -263,32 +208,3 @@ The main tasks for this exercise are as follows:
 1. Navigate to the inbox of the email account you configured in this exercise and verify that includes an email generated by the logic app.
 
 > **Result**: After you completed this exercise, you have configured an Azure logic app to monitor changes to a resource group.
-
-
-## Exercise 3: Remove lab resources
-
-#### Task 1: Open Cloud Shell
-
-1. At the top of the portal, click the **Cloud Shell** icon to open the Cloud Shell pane.
-
-1. If needed, switch to the Bash shell session by using the drop down list in the upper left corner of the Cloud Shell pane.
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to list all resource groups you created in this lab:
-
-   ```
-   az group list --query "[?starts_with(name,'az30007')]".name --output tsv
-   ```
-
-1. Verify that the output contains only the resource groups you created in this lab. These groups will be deleted in the next task.
-
-#### Task 2: Delete resource groups
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to delete the resource groups you created in this lab
-
-   ```sh
-   az group list --query "[?starts_with(name,'az30007')]".name --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
-   ```
-
-1. Close the **Cloud Shell** prompt at the bottom of the portal.
-
-> **Result**: In this exercise, you removed the resources used in this lab.
