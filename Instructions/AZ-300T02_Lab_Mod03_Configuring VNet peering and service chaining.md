@@ -44,21 +44,19 @@ The main tasks for this exercise are as follows:
 
 1. In the Azure portal, in the Microsoft Edge window, start a **Bash** session within the **Cloud Shell**. 
 
-1. If you are presented with the **You have no storage mounted** message, configure storage using the following settings:
+1. If you are presented with the **You have no storage mounted** message, refer to Lab00.
 
-    - Subsciption: the name of the target Azure subscription
+1. From the Cloud Shell pane, use the following command to copy the first Azure Resource Manager template **azuredeploy0401.json** into the home directory:
 
-    - Cloud Shell region: the name of the Azure region that is available in your subscription and which is closest to the lab location
+```sh
+cp ./az-300/AZ-300T02/Module_03/azuredeploy0401.json .
+```
 
-    - Resource group: the name of a new resource group **StagiaireXXX-RG1**
+1. From the Cloud Shell pane, use the following command to copy the parameter file **azuredeploy04.parameters.json** into the home directory:
 
-    - Storage account: a name of a new storage account
-
-    - File share: a name of a new file share
-
-1. From the Cloud Shell pane, upload the first Azure Resource Manager template **\\allfiles\\AZ-300T02\\Module_03\\azuredeploy0401.json** into the home directory.
-
-1. From the Cloud Shell pane, upload the parameter file **\\allfiles\\AZ-300T02\\Module_03\\azuredeploy04.parameters.json** into the home directory.
+```sh
+cp ./az-300/AZ-300T02/Module_03/azuredeploy04.parameters.json .
+```
 
 1. From the Cloud Shell pane, deploy the two Azure VMs hosting Windows Server 2016 Datacenter into the first virtual network by running:
 
@@ -71,7 +69,11 @@ The main tasks for this exercise are as follows:
 
 #### Task 2: Create the second Azure virtual network environment by using an Azure Resource Manager template
 
-1. From the Cloud Shell pane, upload the second Azure Resource Manager template **\\allfiles\\AZ-300T02\\Module_03\\azuredeploy0402.json** into the home directory.
+1. From the Cloud Shell pane, use the follwing command to copy the second Azure Resource Manager template **azuredeploy0402.json** into the home directory:
+
+```sh
+cp ./az-300/AZ-300T02/Module_03/azuredeploy0402.json .
+```
 
 1. From the Cloud Shell pane, deploy an Azure VM hosting Windows Server 2016 Datacenter into the second virtual network by running:
 
