@@ -44,21 +44,19 @@ The main tasks for this exercise are as follows:
 
 1. In the Azure portal, in the Microsoft Edge window, start a **Bash** session within the **Cloud Shell**. 
 
-1. If you are presented with the **You have no storage mounted** message, configure storage using the following settings:
+1. If you are presented with the **You have no storage mounted** message, refer to Lab00
 
-    - Subsciption: the name of the target Azure subscription
+1. From the Cloud Shell pane, use the following command to copy the Azure Resource Manager template **azuredeploy0801.json** into the home directory:
 
-    - Cloud Shell region: the name of the Azure region that is available in your subscription and which is closest to the lab location
+```sh
+cp ./az-300/AZ-300T03/Module_03/azuredeploy0801.json .
+```
 
-    - Resource group: the name of a new resource group **StagiaireXXX-RG1**
+1. From the Cloud Shell pane, use the following command to copy the parameter file **azuredeploy0801.parameters.json** into the home directory:
 
-    - Storage account: a name of a new storage account
-
-    - File share: a name of a new file share
-
-1. From the Cloud Shell pane, upload the Azure Resource Manager template **\\allfiles\\AZ-300T03\\Module_03\\azuredeploy0801.json** into the home directory.
-
-1. From the Cloud Shell pane, upload the parameter file **\\allfiles\\AZ-300T03\\Module_03\\azuredeploy0801.parameters.json** into the home directory.
+```sh
+cp ./az-300/AZ-300T03/Module_03/azuredeploy0801.parameters.json .
+```
 
 1. From the Cloud Shell pane, deploy a pair of Azure VMs hosting Windows Server 2016 Datacenter by running:
 
@@ -267,10 +265,7 @@ The main tasks for this exercise are as follows:
 
 1. Leave the Remote Desktop sessions open. You will use them in the next exercise.
 
-
-
 > **Result**: After you completed this exercise, you have implemented and tested Azure Load Balancer Standard inbound load balancing and NAT rules
-
 
 ## Exercise 2: Configure outbound SNAT traffic by using Azure Load Balancer Standard
   
@@ -289,9 +284,17 @@ The main tasks for this exercise are as follows:
 
 1. In the Azure portal, in the Microsoft Edge window, start a **Bash** session within the **Cloud Shell**. 
 
-1. From the Cloud Shell pane, upload the Azure Resource Manager template **\\allfiles\\AZ-300T03\\Module_03\\azuredeploy0802.json** into the home directory.
+1. From the Cloud Shell pane, use the following command to copy the Azure Resource Manager template **azuredeploy0802.json** into the home directory:
 
-1. From the Cloud Shell pane, upload the parameter file **\\allfiles\\AZ-300T03\\Module_03\\azuredeploy0802.parameters.json** into the home directory.
+```sh
+cp ./az-300/AZ-300T03/Module_03/azuredeploy0802.json .
+```
+
+1. From the Cloud Shell pane, use the following command to copy the parameter file **azuredeploy0802.parameters.json** into the home directory.
+
+```sh
+cp ./az-300/AZ-300T03/Module_03/azuredeploy0802.parameters.json .
+```
 
 1. From the Cloud Shell pane, deploy a pair of Azure VMs hosting Windows Server 2016 Datacenter by running:
 
