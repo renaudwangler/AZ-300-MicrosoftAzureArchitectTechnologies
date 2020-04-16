@@ -55,17 +55,7 @@ The main tasks for this exercise are as follows:
 
 1. In the Azure portal, in the Microsoft Edge window, start a **Bash** session within the **Cloud Shell**. 
 
-1. If you are presented with the **You have no storage mounted** message, configure storage using the following settings:
-
-    - Subsciption: the name of the target Azure subscription
-
-    - Cloud Shell region: the name of the Azure region that is available in your subscription and which is closest to the lab location
-
-    - Resource group: **StagiaireXXX-RG1**
-
-    - Storage account: a name of a new storage account
-
-    - File share: a name of a new file share
+1. If you are presented with the **You have no storage mounted** message, refer to Lab00.
 
 1. From the Cloud Shell pane, run the following to generate a pseudo-random string of characters that will be used as a prefix for names of resources you will provision in this exercise:
 
