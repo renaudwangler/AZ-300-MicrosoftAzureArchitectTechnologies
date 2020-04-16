@@ -34,17 +34,7 @@ The main tasks for this exercise are as follows:
 
 1. In the Azure portal, in the Microsoft Edge window, start a **Bash** session within the **Cloud Shell**.
 
-1. If you are presented with the **You have no storage mounted** message, configure storage using the following settings:
-
-   - Subsciption: the name of the target Azure subscription
-
-   - Cloud Shell region: the name of the Azure region that is available in your subscription and which is closest to the lab location
-
-   - Resource group: **StagiaireXXX-RG1**
-
-   - Storage account: a name of a new storage account
-
-   - File share: a name of a new file share
+1. If you are presented with the **You have no storage mounted** message, refer to Lab00
 
 1. From the Cloud Shell pane, run the following to retrieve a resource group and store the JSON output in a variable:
 
@@ -77,7 +67,11 @@ The main tasks for this exercise are as follows:
    ```sh
    RESOURCE_GROUP_NAME=$(echo $RG | jq -r .name)
    ```
-1. From the Cloud Shell pane, upload the Packer template **\\allfiles\\AZ-300T01\\Module_03\\template03.json** into the home directory. To upload a file, click the document icon that has an up and down arrow in the Cloud Shell pane. 
+1. From the Cloud Shell pane, run the following command to copy the Packer template **template03.json** into the home directory:
+   
+   ```sh
+   cp ./az-300/AZ-300T01/Module_03/template03.json .
+   ```
 
 1. From the Cloud Shell pane, run the following to replace the placeholder for the value of the **client_id** parameter with the value of the **\$CLIENT_ID** variable in the Packer template:
 
