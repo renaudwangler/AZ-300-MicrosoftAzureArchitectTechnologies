@@ -36,17 +36,7 @@ The main tasks for this exercise are as follows:
 
 1. In the Azure portal, in the Microsoft Edge window, start a **PowerShell** session within the Cloud Shell.
 
-1. If you are presented with the **You have no storage mounted** message, click **Show Advanced Settings** and then configure storage using the following settings:
-
-   - Subscription: the name of the target Azure subscription
-
-   - Cloud Shell region: **West US**
-   
-   - Resource group: Use  resource group **StagiaireXXX-RG1**
-
-   - Storage account: a name of a new storage account (between 3 and 24 characters consisting of lower case letters and digits)
-
-   - File share: a name of a new file share: **cloudshell**
+1. If you are presented with the **You have no storage mounted** message, refer to Lab00.
 
 1. From the Cloud Shell pane, run the following command to identify a unique DNS domain name (substitute the placeholder `<custom-label>` with any alphanumeric string starting with a letter and no longer than 9 characters.
 
