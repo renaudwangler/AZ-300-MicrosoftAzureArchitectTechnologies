@@ -44,7 +44,7 @@ In this task, you will copy the files needed by your lab in your CloudShell loca
 
    ```pwsh
    azcopy login --identity
-   azcopy copy 'https://iblab.blob.core.windows.net/az-104' . --recursive
+   azcopy copy 'https://iblab.blob.core.windows.net/az-300' . --recursive
    ```
 
 ### Exercice 2
