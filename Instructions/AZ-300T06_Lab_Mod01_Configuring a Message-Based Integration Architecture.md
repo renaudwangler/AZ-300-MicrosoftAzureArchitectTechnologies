@@ -61,7 +61,7 @@ The main tasks for this exercise are as follows:
 
     - Cloud Shell region: the name of the Azure region that is available in your subscription and which is closest to the lab location
 
-    - Resource group: **az300T0601-LabRG**
+    - Resource group: **StagiaireXXX-RG1**
 
     - Storage account: a name of a new storage account
 
@@ -79,12 +79,10 @@ The main tasks for this exercise are as follows:
    export LOCATION='<Azure_region>'
    ```
 
-1. From the Cloud Shell pane, run the following to create a resource group that will host all resources that you will provision in this lab:
+1. From the Cloud Shell pane, run the following to create a variable holding the name of your resource group:
 
    ```sh
-   export RESOURCE_GROUP_NAME='az300T0602-LabRG'
-
-   az group create --name "${RESOURCE_GROUP_NAME}" --location "$LOCATION"
+   export RESOURCE_GROUP_NAME='StagiaireXXX-RG1'
    ```
 
 1. From the Cloud Shell pane, run the following to create an Azure Storage account and a container that will host blobs to be processed by the Azure function:
@@ -172,10 +170,9 @@ The main tasks for this exercise are as follows:
 1. From the Cloud Shell pane, run the following to repopulate variables that you used in the previous task:
 
    ```sh
-   export RESOURCE_GROUP_NAME='az300T0602-LabRG'
+   export RESOURCE_GROUP_NAME='StagiaireXXX-RG1'
 
-   export STORAGE_ACCOUNT_NAME="$(az storage account list --resource-group "${RESOURCE_GROUP_NAME}" --query "[0].name" --output tsv)"
-
+   export STORAGE_ACCOUNT_NAME="$(az storage account list --resource-group "$RESOURCE_GROUP_NAME" --query "[?starts_with(name,'az300t06')]".name --output tsv)"
    export CONTAINER_NAME="workitems"
    ```
 
@@ -218,12 +215,6 @@ The main tasks for this exercise are as follows:
 
 1. If necessary, restart the Bash session in the Cloud Shell.
 
-1. From the Cloud Shell pane, run the following to register the eventgrid resource provider in your subscription:
-
-   ```sh
-   az provider register --namespace microsoft.eventgrid
-   ```
-  
 1. From the Cloud Shell pane, run the following to generate a pseudo-random string of characters that will be used as a prefix for names of resources you will provision in this exercise:
 
    ```sh
@@ -233,13 +224,12 @@ The main tasks for this exercise are as follows:
 1. From the Cloud Shell pane, run the following to identify the Azure region hosting the target resource group and its existing resources: 
 
    ```sh
-   export RESOURCE_GROUP_NAME_EXISTING='az300T0602-LabRG'
+   export RESOURCE_GROUP_NAME_EXISTING='StagiaireXXX-RG1'
 
    export LOCATION=$(az group list --query "[?name == '${RESOURCE_GROUP_NAME_EXISTING}'].location" --output tsv)
 
-   export RESOURCE_GROUP_NAME='az300T0603-LabRG'
+   export RESOURCE_GROUP_NAME='StagiaireXXX-RG2'
 
-   az group create --name "${RESOURCE_GROUP_NAME}" --location $LOCATION
    ```
 
 1. From the Cloud Shell pane, run the following to create an Azure Storage account and its container that will be used by the Event Grid subscription that you will configure in this task:
@@ -296,35 +286,4 @@ The main tasks for this exercise are as follows:
 
 1. Click the entry representing the queue you created in the previous task of this exercise.
 
-1. Note that the queue contains a single message. Click its entry to display the **Message properties** blade. 
-
-1. In the **MESSAGE BODY**, note the value of the **url** property, representing the URL of the Azure Storage blob you uploaded in the previous task.
-
-
-## Exercise 3: Remove lab resources
-
-#### Task 1: Open Cloud Shell
-
-1. At the top of the portal, click the **Cloud Shell** icon to open the Cloud Shell pane.
-
-1. If needed, switch to the Bash shell session by using the drop down list in the upper left corner of the Cloud Shell pane.
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to list all resource groups you created in this lab:
-
-   ```
-   az group list --query "[?starts_with(name,'az300T06')]".name --output tsv
-   ```
-
-1. Verify that the output contains only the resource groups you created in this lab. These groups will be deleted in the next task.
-
-#### Task 2: Delete resource groups
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to delete the resource groups you created in this lab
-
-   ```sh
-   az group list --query "[?starts_with(name,'az300T06')]".name --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
-   ```
-
-1. Close the **Cloud Shell** prompt at the bottom of the portal.
-
-> **Result**: In this exercise, you removed the resources used in this lab.
+1. Note that the queue contains a single message. Hover the mouse over the **Message text** field of the message entry and note the **url** property referring to the blob created in the previous task.
